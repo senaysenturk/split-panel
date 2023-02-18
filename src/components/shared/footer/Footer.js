@@ -1,7 +1,10 @@
 import React from "react";
+import style from "./style.module.scss";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <div className={`${style["footer"]}`}>enerji piyasaları işletme a.ş</div>
+  );
 };
 
 export default Footer;

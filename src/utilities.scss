@@ -2,10 +2,15 @@
   --primary-color: #111844;
   --secondary-color: #1c38a8;
   --text-color: #fff;
+  --footer-color: #c1c1c1;
 }
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   list-style: none;
+}
+
+a {
+  cursor: pointer;
 }
