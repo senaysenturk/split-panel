@@ -14,7 +14,7 @@ const MenuItem = ({ icon, options, setSelectedOptions }) => {
       {options.length > 0 && (
         <div className={`${styles["dropdown-content"]}`}>
           {options.map((option, index) => (
-            <div className={`${styles["menu-item"]}`}>
+            <div className={`${styles["menu-item"]}`} key={index}>
               <input
                 type="checkbox"
                 name={option}
