@@ -1,0 +1,31 @@
+svg {
+  height: 20px;
+  width: 20px;
+  fill: #000;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    border: 1px solid black;
+    z-index: 1;
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+  &:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+  }
+}

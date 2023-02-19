@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./style.module.scss";
 
 const LocationInfo = ({ contentSize }) => {
-  console.log(contentSize);
   return (
     <div className={`${styles["location-info"]}`}>
       <h5>Ayarlar </h5>
