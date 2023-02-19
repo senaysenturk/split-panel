@@ -1,41 +1,109 @@
 import React, { useState } from "react";
-import Split from "react-split-grid";
+import SplitGrid from "react-split-grid";
+import Split from "react-split";
 
+import ResizeablePanelHorizontal from "./horizontal/ResizeablePanelHorizontal";
+import ResizeablePanelVertical from "./vertical/ResizeablePanelVertical";
 import "./style.scss";
 const ResizeablePanel = () => {
   return (
-    <>
-      <Split
-        // minSize={5}
-        // columnMinSize={200}
-        // columnMinSizes={[1,2,3]}
-        columnCursor="col-resize"
-        rowCursor="row-resize"
-        render={({ getGridProps, getGutterProps }) => {
-          return (
-            <div className={"grid-container"} {...getGridProps()}>
-              <div className={"grid-item item1"}>Row 1 Column 1</div>
-              <div
-                className={"grid-gutter item2 gutter-horizontal"}
-                {...getGutterProps("column", 1)}
-              />
-              <div className={"grid-item item3"}>Row 1 Column Two</div>
+    <div className="">
+      {/* <ResizeablePanelHorizontal /> */}
+      {/* <ResizeablePanelVertical /> */}
+      {/* <ResizeablePanelHorizontal /> */}
 
-              <div
-                className={"grid-gutter item4 gutter-vertical"}
-                {...getGutterProps("row", 1)}
-              />
-              <div className={"grid-item item5"}>Row 2 Column One</div>
-              <div
-                className={"grid-gutter item6 gutter-horizontal"}
-                {...getGutterProps("column", 3)}
-              />
-              <div className={"grid-item item7"}>Row 2 Column Two</div>
-            </div>
-          );
-        }}
-      />
-    </>
+      <Split
+        style={{ display: "flex", height: "calc(100vh - 32px)" }}
+        sizes={[100, 100]}
+        gutterSize={8}
+        direction="horizontal"
+      >
+        <div className="split">
+          <Split
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+            }}
+            sizes={[100, 100]}
+            gutterSize={8}
+            direction="vertical"
+          >
+            <Split
+              style={{ display: "flex", height: "calc(100vh - 32px)" }}
+              sizes={[50, 50]}
+              gutterSize={8}
+              direction="horizontal"
+            >
+              <div className="split">
+                <Split
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                  sizes={[100, 100]}
+                  gutterSize={8}
+                  direction="vertical"
+                >
+                  <div className="split content">1</div>
+                </Split>
+              </div>
+              <div className="split">
+                <Split
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                  sizes={[100, 100]}
+                  gutterSize={8}
+                  direction="vertical"
+                >
+                  <div className="split content">2</div>
+                </Split>
+              </div>
+            </Split>
+
+            <Split
+              style={{ display: "flex", height: "calc(100vh - 32px)" }}
+              sizes={[50, 50]}
+              gutterSize={8}
+              direction="horizontal"
+            >
+              <div className="split">
+                <Split
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                  sizes={[100, 100]}
+                  gutterSize={8}
+                  direction="vertical"
+                >
+                  <div className="split content">1</div>
+                </Split>
+              </div>
+              <div className="split">
+                <Split
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                  sizes={[100, 100]}
+                  gutterSize={8}
+                  direction="vertical"
+                >
+                  <div className="split content">2</div>
+                </Split>
+              </div>
+            </Split>
+          </Split>
+        </div>
+      </Split>
+    </div>
   );
 };
 
