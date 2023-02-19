@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import Split from "react-split";
-
-import ResizeablePanelHorizontal from "./horizontal/ResizeablePanelHorizontal";
-import ResizeablePanelVertical from "./vertical/ResizeablePanelVertical";
+import List from "../../shared/list/List";
+import Table from "../../shared/table/Table";
+import LocationInfo from "../location-info/LocationInfo";
 import "./style.scss";
 const ResizeablePanel = () => {
-  return (
-    <div className="">
-      {/* <ResizeablePanelHorizontal /> */}
-      {/* <ResizeablePanelVertical /> */}
-      {/* <ResizeablePanelHorizontal /> */}
+  const [sizes, setSizes] = useState([100, 100, 100, 100]); // initialize sizes state with default values
 
+  const handleOnChange = (newSizes) => {
+    setSizes(newSizes);
+  };
+  return (
+    <>
       <Split
-        style={{ display: "flex", height: "calc(100vh - 32px)" }}
+        style={{ display: "flex", height: "calc(100vh - 100px)" }}
         sizes={[100, 100]}
-        gutterSize={8}
+        gutterSize={10}
         direction="horizontal"
       >
         <div className="split">
@@ -25,14 +26,16 @@ const ResizeablePanel = () => {
               height: "100%",
             }}
             sizes={[100, 100]}
-            gutterSize={8}
+            gutterSize={10}
             direction="vertical"
+            onChange={handleOnChange}
           >
             <Split
               style={{ display: "flex", height: "calc(100vh - 32px)" }}
-              sizes={[50, 50]}
-              gutterSize={8}
+              sizes={[70, 30]}
+              gutterSize={10}
               direction="horizontal"
+              onChange={handleOnChange}
             >
               <div className="split">
                 <Split
@@ -42,10 +45,13 @@ const ResizeablePanel = () => {
                     height: "100%",
                   }}
                   sizes={[100, 100]}
-                  gutterSize={8}
+                  gutterSize={10}
                   direction="vertical"
+                  onChange={handleOnChange}
                 >
-                  <div className="split content">1</div>
+                  <div className="split content">
+                    <Table />
+                  </div>
                 </Split>
               </div>
               <div className="split">
@@ -56,18 +62,20 @@ const ResizeablePanel = () => {
                     height: "100%",
                   }}
                   sizes={[100, 100]}
-                  gutterSize={8}
+                  gutterSize={10}
                   direction="vertical"
                 >
-                  <div className="split content">2</div>
+                  <div className="split content">
+                    <LocationInfo />
+                  </div>
                 </Split>
               </div>
             </Split>
 
             <Split
               style={{ display: "flex", height: "calc(100vh - 32px)" }}
-              sizes={[50, 50]}
-              gutterSize={8}
+              sizes={[60, 40]}
+              gutterSize={10}
               direction="horizontal"
             >
               <div className="split">
@@ -78,10 +86,12 @@ const ResizeablePanel = () => {
                     height: "100%",
                   }}
                   sizes={[100, 100]}
-                  gutterSize={8}
+                  gutterSize={10}
                   direction="vertical"
                 >
-                  <div className="split content">1</div>
+                  <div className="split content">
+                    <List />
+                  </div>
                 </Split>
               </div>
               <div className="split">
@@ -92,17 +102,17 @@ const ResizeablePanel = () => {
                     height: "100%",
                   }}
                   sizes={[100, 100]}
-                  gutterSize={8}
+                  gutterSize={10}
                   direction="vertical"
                 >
-                  <div className="split content">2</div>
+                  <div className="split content">**Lorem Ipsum</div>
                 </Split>
               </div>
             </Split>
           </Split>
         </div>
       </Split>
-    </div>
+    </>
   );
 };
 

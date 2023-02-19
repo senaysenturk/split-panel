@@ -1,0 +1,12 @@
+.location-info {
+  height: 250px;
+  width: 300px;
+  background-color: #dcddb6;
+  border: 1px solid #000;
+  margin: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+}

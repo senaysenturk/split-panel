@@ -14,3 +14,20 @@
 a {
   cursor: pointer;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background: #e4e4e2;
+    color: #000;
+    font-weight: bold;
+  }
+  td,
+  th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+}
