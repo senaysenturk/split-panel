@@ -14,10 +14,22 @@ const Table = () => {
     teklif: true,
     data: true,
   });
+  const [selectedYear, setSelectedYear] = useState();
+
+  const filteredList = selectedYear
+    ? list.filter((item) => item.kontrat === selectedYear)
+    : list;
+
   return (
     <div className={`${styles["container"]}`}>
       <div className={`${styles["container-head"]}`}>
-        <select name="year" id="year" className={`${styles["year-select"]}`}>
+        <select
+          name="year"
+          id="year"
+          className={`${styles["year-select"]}`}
+          onChange={(e) => setSelectedYear(e.target.value)}
+        >
+          <option value="">Kontrat seçiniz</option>
           {years.map((year) => (
             <option value={year}>{year}</option>
           ))}
@@ -84,7 +96,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {list.map(({ id, kontrat, teklif, data }) => (
+          {filteredList.map(({ id, kontrat, teklif, data }) => (
             <tr key={id}>
               {Object.entries(selectedOptions).map(([key, value]) => {
                 if (value) {
