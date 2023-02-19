@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SplitGrid from "react-split-grid";
 import Split from "react-split";
 
 import ResizeablePanelHorizontal from "./horizontal/ResizeablePanelHorizontal";
