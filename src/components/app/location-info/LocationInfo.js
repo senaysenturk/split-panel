@@ -1,21 +1,30 @@
 import React from "react";
+import { connect } from "react-redux";
 import styles from "./style.module.scss";
 
-const LocationInfo = ({ pane1Size, pane2Size, pane3Size }) => {
+const LocationInfo = (props) => {
   return (
     <div className={`${styles["location-info"]}`}>
       <h5>Ayarlar </h5>
       <span>
-        Yatay Pencere Değerleri: %{pane1Size[0]} %{pane1Size[1]}
+        Yatay Pencere Değerleri:{" "}
+        {props.panel1.height > 0 &&
+          `%${props.panel1.height} %${props.panel1.width}`}
       </span>
       <span>
-        Üst Dikey Pencere Değerleri %{pane2Size[0]} %{pane2Size[1]}
+        Üst Dikey Pencere Değerleri{" "}
+        {props.panel2.height > 0 &&
+          `%${props.panel2.height} %${props.panel2.width}`}
       </span>
       <span>
-        Alt Dikey Pencere Değerleri %{pane3Size[0]} %{pane3Size[1]}
+        Alt Dikey Pencere Değerleri{" "}
+        {props.panel3.height > 0 &&
+          `%${props.panel3.height} %${props.panel3.width}`}
       </span>
     </div>
   );
 };
-
-export default LocationInfo;
+const mapStateToProps = (state) => {
+  return state;
+};
+export default connect(mapStateToProps)(LocationInfo);

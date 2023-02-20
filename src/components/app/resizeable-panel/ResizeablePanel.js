@@ -4,30 +4,40 @@ import List from "../../shared/list/List";
 import Table from "../../shared/table/Table";
 import LocationInfo from "../location-info/LocationInfo";
 import "./style.scss";
-const ResizeablePanel = () => {
-  const [pane1Size, setPane1Size] = useState([]);
-  const [pane2Size, setPane2Size] = useState([]);
-  const [pane3Size, setPane3Size] = useState([]);
+
+import { updatePanel1 } from "../../../actions/panel1-actions";
+import { updatePanel2 } from "../../../actions/panel2-actions";
+import { updatePanel3 } from "../../../actions/panel3-actions";
+import { connect } from "react-redux";
+import { useDashboard } from "../../../contexts/dashboardContext";
+
+const ResizeablePanel = (props) => {
+  // const [pane1Size, setPane1Size] = useState([]);
+  // const [pane2Size, setPane2Size] = useState([]);
+  // const [pane3Size, setPane3Size] = useState([]);
 
   const handlePane1Size = (newSize) => {
-    console.log(newSize);
-    setPane1Size(newSize);
+    // console.log(newSize);
+    // setPane1Size(newSize);
+    setIsSave(true);
+    props.handlePane1Size(newSize);
   };
 
   const handlePane2Size = (newSize) => {
-    console.log(newSize);
-    setPane2Size(newSize);
+    // console.log(newSize);
+    // setPane2Size(newSize);
+    setIsSave(true);
+    props.handlePane2Size(newSize);
   };
 
   const handlePane3Size = (newSize) => {
-    console.log(newSize);
-    setPane3Size(newSize);
+    // console.log(newSize);
+    // setPane3Size(newSize);
+    setIsSave(true);
+    props.handlePane3Size(newSize);
   };
-  useEffect(() => {
-    localStorage.setItem("panel1Size", pane1Size);
-    localStorage.setItem("panel2Size", pane2Size);
-    localStorage.setItem("panel3Size", pane3Size);
-  }, [pane1Size, pane2Size, pane3Size]);
+
+  const { setIsSave } = useDashboard();
   return (
     <>
       <div
@@ -85,9 +95,9 @@ const ResizeablePanel = () => {
               >
                 <div className="SplitPane content">
                   <LocationInfo
-                    pane1Size={pane1Size}
-                    pane2Size={pane2Size}
-                    pane3Size={pane3Size}
+                  // pane1Size={pane1Size}
+                  // pane2Size={pane2Size}
+                  // pane3Size={pane3Size}
                   />
                 </div>
               </SplitPane>
@@ -139,5 +149,12 @@ const ResizeablePanel = () => {
     </>
   );
 };
-
-export default ResizeablePanel;
+const mapStateToProps = (state) => {
+  return state;
+};
+const mapDispatchToProps = {
+  handlePane1Size: updatePanel1,
+  handlePane2Size: updatePanel2,
+  handlePane3Size: updatePanel3,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ResizeablePanel);
