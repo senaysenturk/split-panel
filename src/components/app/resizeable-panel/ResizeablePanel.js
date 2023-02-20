@@ -12,13 +12,21 @@ import { connect } from "react-redux";
 import { useDashboard } from "../../../contexts/dashboardContext";
 
 const ResizeablePanel = (props) => {
-  // const [pane1Size, setPane1Size] = useState([]);
-  // const [pane2Size, setPane2Size] = useState([]);
-  // const [pane3Size, setPane3Size] = useState([]);
+  const [pane1Size, setPane1Size] = useState(() => {
+    return localStorage.getItem("pane1Size")?.split(",") || [70, 30];
+  });
+  const [pane2Size, setPane2Size] = useState(() => {
+    return localStorage.getItem("pane1Size")?.split(",") || [60, 40];
+  });
+  const [pane3Size, setPane3Size] = useState(() => {
+    return localStorage.getItem("pane1Size")?.split(",") || [50, 50];
+  });
 
   const handlePane1Size = (newSize) => {
     // console.log(newSize);
     // setPane1Size(newSize);
+    setPane1Size(newSize);
+    localStorage.setItem("pane1Size", JSON.stringify(newSize));
     setIsSave(true);
     props.handlePane1Size(newSize);
   };
@@ -26,6 +34,8 @@ const ResizeablePanel = (props) => {
   const handlePane2Size = (newSize) => {
     // console.log(newSize);
     // setPane2Size(newSize);
+    setPane2Size(newSize);
+    localStorage.setItem("pane2Size", JSON.stringify(newSize));
     setIsSave(true);
     props.handlePane2Size(newSize);
   };
@@ -33,11 +43,32 @@ const ResizeablePanel = (props) => {
   const handlePane3Size = (newSize) => {
     // console.log(newSize);
     // setPane3Size(newSize);
+    localStorage.setItem("pane3Size", JSON.stringify(newSize));
+    setPane3Size(newSize);
     setIsSave(true);
     props.handlePane3Size(newSize);
   };
 
   const { setIsSave } = useDashboard();
+
+  useEffect(() => {
+    const savedPane1Size = localStorage.getItem("pane1Size");
+    if (savedPane1Size) {
+      setPane1Size(JSON.parse(savedPane1Size));
+    }
+    const savedPane2Size = localStorage.getItem("pane2Size");
+    if (savedPane2Size) {
+      setPane2Size(JSON.parse(savedPane2Size));
+    }
+    const savedPane3Size = localStorage.getItem("pane3Size");
+
+    if (savedPane3Size) {
+      setPane3Size(JSON.parse(savedPane3Size));
+    }
+
+    console.log(pane1Size, pane2Size, pane3Size);
+  }, []);
+
   return (
     <>
       <div
@@ -51,7 +82,7 @@ const ResizeablePanel = (props) => {
             flexDirection: "column",
             height: "100%",
           }}
-          sizes={[50, 50]}
+          sizes={pane1Size}
           gutterSize={10}
           direction="vertical"
           onDragEnd={handlePane1Size}
@@ -59,7 +90,7 @@ const ResizeablePanel = (props) => {
           <SplitPane
             id="2"
             style={{ display: "flex", height: "calc(100vh - 32px)" }}
-            sizes={[70, 30]}
+            sizes={pane2Size}
             gutterSize={10}
             direction="horizontal"
             onDragEnd={handlePane2Size}
@@ -107,7 +138,7 @@ const ResizeablePanel = (props) => {
           <SplitPane
             id="5"
             style={{ display: "flex", height: "calc(100vh - 32px)" }}
-            sizes={[60, 40]}
+            sizes={pane3Size}
             gutterSize={10}
             direction="horizontal"
             onDragEnd={handlePane3Size}
