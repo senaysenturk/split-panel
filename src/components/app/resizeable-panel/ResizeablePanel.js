@@ -66,7 +66,7 @@ const ResizeablePanel = (props) => {
       setPane3Size(JSON.parse(savedPane3Size));
     }
 
-    console.log(pane1Size, pane2Size, pane3Size);
+    // console.log(pane1Size, pane2Size, pane3Size);
   }, []);
 
   return (

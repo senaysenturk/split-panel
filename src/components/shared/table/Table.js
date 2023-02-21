@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDashboard } from "../../../contexts/dashboardContext";
 import MenuItem from "../menu-item/MenuItem";
 import styles from "./style.module.scss";
 
 const Table = () => {
   const years = [2018, 2019, 2020, 2021, 2022];
-  const [list, setList] = useState([
-    { id: 1, kontrat: "2019", teklif: "100", data: "Satış" },
-    { id: 2, kontrat: "2018", teklif: "200", data: "Alış" },
-    { id: 3, kontrat: "2018", teklif: "100", data: "Satış" },
-    { id: 4, kontrat: "2020", teklif: "200", data: "Alış" },
-  ]);
+  // const [list, setList] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({
     id: true,
     kontrat: true,
@@ -17,6 +13,12 @@ const Table = () => {
     data: true,
   });
   const [selectedYear, setSelectedYear] = useState();
+  const { contract, getAllContract } = useDashboard();
+
+  useEffect(() => {
+    getAllContract();
+  }, []);
+
   const menuOptions = [
     {
       name: "export",
@@ -51,8 +53,8 @@ const Table = () => {
   ];
 
   const filteredList = selectedYear
-    ? list.filter((item) => item.kontrat === selectedYear)
-    : list;
+    ? contract.filter((item) => item.kontrat === selectedYear)
+    : contract;
 
   return (
     <div className={`${styles["container"]}`}>
@@ -102,16 +104,17 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredList.map(({ id, kontrat, teklif, data }) => (
-            <tr key={id}>
-              {Object.entries(selectedOptions).map(([key, value]) => {
-                if (value) {
-                  return <td key={key}>{eval(key)}</td>;
-                }
-                return null;
-              })}
-            </tr>
-          ))}
+          {filteredList.length > 0 &&
+            filteredList.map(({ id, kontrat, teklif, data }) => (
+              <tr key={id}>
+                {Object.entries(selectedOptions).map(([key, value]) => {
+                  if (value) {
+                    return <td key={key}>{eval(key)}</td>;
+                  }
+                  return null;
+                })}
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

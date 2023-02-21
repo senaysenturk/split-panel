@@ -4,7 +4,8 @@ import styles from "./style.module.scss";
 
 const Header = () => {
   const { isSave } = useDashboard();
-  console.log("isSave", isSave);
+  const name = "Ayhan Yanbul";
+  // console.log("isSave", isSave);
   return (
     <header className={`${styles["header"]}`}>
       <div className={`${styles["logo"]}`}>
@@ -32,7 +33,17 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a>Merhaba, Ayhan</a>
+            <a
+              data-letters={`${name
+                .split(" ")[0]
+                .charAt(0)
+                .toLocaleUpperCase()}${name
+                .split(" ")[1]
+                .charAt(0)
+                .toLocaleUpperCase()}`}
+            >
+              {name}
+            </a>
           </li>
         </ul>
       </nav>

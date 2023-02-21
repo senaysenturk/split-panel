@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useDashboard } from "../../../contexts/dashboardContext";
 import styles from "./style.module.scss";
 
 const List = () => {
   const [showNewDataInputs, setShowNewDataInputs] = useState("none");
   const [data, setData] = useState({});
-  const [list, setList] = useState([
-    { id: "1", contract: "2019", offer: "100", data: "Satış" },
-    { id: "2", contract: "2018", offer: "200", data: "Alış" },
-  ]);
+
+  const { list, setList, getAllList, addContract } = useDashboard();
+  useEffect(() => {
+    getAllList();
+  }, []);
+
   const addData = () => {
     setList((prevList) => [...prevList, { ...data }]);
+    addContract(data);
   };
-
   return (
     <>
       <table>
