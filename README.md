@@ -1,9 +1,5 @@
 # split-panel
 
-## Description
-
-Project aims to shopping via a ReactJS.
-
 ## At the end of the project, following topics are to be covered;
 
 HTML
