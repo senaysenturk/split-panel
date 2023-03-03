@@ -1,8 +1,6 @@
 # split-panel
 
-## Description
-
-Project aims to shopping via a ReactJS.
+https://split-panel.netlify.app/
 
 ## At the end of the project, following topics are to be covered;
 
