@@ -1,5 +1,7 @@
 # split-panel
 
+https://split-panel.netlify.app/
+
 ## At the end of the project, following topics are to be covered;
 
 HTML
