@@ -4,16 +4,16 @@ import styles from "./style.module.scss";
 
 const Header = () => {
   const { isSave } = useDashboard();
-  const name = "Ayhan Yanbul";
+  const name = "Şenay Şentürk";
   // console.log("isSave", isSave);
   return (
     <header className={`${styles["header"]}`}>
       <div className={`${styles["logo"]}`}>
         <a>
-          <img
+          {/* <img
             src="https://www.epias.com.tr/wp-content/themes/epias/images/epias-beyaz.svg"
             alt="Epiaş"
-          />
+          /> */}
         </a>
       </div>
       <nav className={`${styles["menu"]}`}>
